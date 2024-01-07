@@ -5,22 +5,32 @@ import numpy as np
 import joblib
 from flask import Flask, render_template, request
 
+# Model accuracies
+accuracy = [0.875, 0.675, 0.7, 0.915]
+
+# Output Labels
+label = ["AI GENERATED", "HUMAN WRITTEN", "INCONCLUSIVE"]
+
+# # normalization of accuracy to obtain weight
+# sum_accuracy = sum(accuracy)
+# weight  = [val / sum_accuracy for val in accuracy]
+# print(weight)
+
 weight = [0.2764612954186414, 0.2132701421800948, 0.22116903633491308, 0.2890995260663507]
 
 # Load the saved models
-loaded_tfidf_vectorizer = joblib.load('tfidf_vectorizer.pkl')
+tfidf_vectorizer = joblib.load('tfidf_vectorizer.pkl')
 RF = joblib.load('RF_model.pkl')
 GB = joblib.load('GB_model.pkl')
-LSVC = joblib.load('LSVC_model.pkl')
 MLP = joblib.load('MLP_model.pkl')
 LR = joblib.load('LR_model.pkl')
 
 def predict(random_text):
 
         # Transform the new text using the loaded TF-IDF vectorizer
-        random_text_tfidf = loaded_tfidf_vectorizer.transform([random_text])
+        random_text_tfidf = tfidf_vectorizer.transform([random_text])
 
-        prediction = [0, 0, 0, 0, 0]
+        prediction = [0, 0, 0, 0]
 
         # Make predictions using the loaded classifier
         pred = GB.predict(random_text_tfidf)
@@ -47,15 +57,18 @@ def predict(random_text):
         weighted_prediction = sum(weight * prediction for weight, prediction in zip(weight, prediction))
 
         # Choosing the label based on the weighted sum
-        final_prediction = 1 if weighted_prediction > 0.5 else 0
         if weighted_prediction > 0.5 :
-            final_prediction = 1
+            final_prediction = label[0]
+            confidence = int(100*round(0.9*weighted_prediction,2))
         elif weighted_prediction < 0.5 :
-            final_prediction = 0
+            final_prediction = label[1]
+            confidence = int(100*round(0.9*(1 - weighted_prediction),2))
         else:
-            final_prediction = 2
+            final_prediction = label[2]
+            confidence = 0
+        
 
-        return weighted_prediction,final_prediction
+        return confidence,final_prediction
         
 
 app = Flask(__name__)
@@ -68,14 +81,8 @@ def index():
 def prediction():
     if request.method == 'POST':
         text = request.form['input_text']
-        confidence, prediction = predict(text)
-        if prediction == 1:
-            result = "AI GENERATED"
-        elif prediction == 2:
-            result = "INCONCLUSIVE"
-        else:
-            confidence = 1 - confidence
-            result = "HUMAN WRITTEN"
+        confidence, result = predict(text)
+        confidence=int(100*round(confidence,2))
         return render_template('predict.html', input_text=text, result=result, confidence=confidence)
 
 if __name__ == '__main__':
