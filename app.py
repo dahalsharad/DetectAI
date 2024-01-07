@@ -82,7 +82,6 @@ def prediction():
     if request.method == 'POST':
         text = request.form['input_text']
         confidence, result = predict(text)
-        confidence=int(100*round(confidence,2))
         return render_template('predict.html', input_text=text, result=result, confidence=confidence)
 
 if __name__ == '__main__':
