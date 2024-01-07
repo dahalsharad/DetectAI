@@ -1,17 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Gelasio:wght@500&display=swap" rel="stylesheet">
     <title>Prediction Results</title>
+    <style>
+                h1{
+            font-family: 'Bungee Spice', sans-serif;
+            text-align: center;
+                }
+                #input_text{
+                    font-family: 'Times New Roman', Times, serif;
+                }
+                p{
+                    font-family: 'Gelasio', serif;
+                    font-size: large;
+                    text-align: center;
+                    margin:16px;
+                }
+                .go_back{
+                    text-align: center;
+                }
+                a button{
+                    background-color: #f7360b; /* White background color */
+            color: #f3f6f8; /* Blue text color */
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+                }
+    </style>
 </head>
 <body>
-    <h2>Prediction Results</h2>
-    <p>Input Text: {{ input_text }}</p>
+    <h1>Prediction Results</h1>
+    <p id="input_text"><b>Input Text:</b> {{ input_text }}</p>
     <p>RESULT : {{ result }}</p>
-    <p>CONFIDENCE: {{ confidence }}</p>
-
-
+<p>Confidence: <progress value="{{confidence}}" max="1"></progress> {{confidence}}%</p>
+<div class="go_back">
     <a href="/" style="text-decoration: none;"><button>Go Back</button></a>
-
+</div>
     
 </body>
 </html>

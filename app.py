@@ -11,7 +11,6 @@ weight = [0.2764612954186414, 0.2132701421800948, 0.22116903633491308, 0.2890995
 loaded_tfidf_vectorizer = joblib.load('tfidf_vectorizer.pkl')
 RF = joblib.load('RF_model.pkl')
 GB = joblib.load('GB_model.pkl')
-LSVC = joblib.load('LSVC_model.pkl')
 MLP = joblib.load('MLP_model.pkl')
 LR = joblib.load('LR_model.pkl')
 
