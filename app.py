@@ -5,7 +5,7 @@ import numpy as np
 import joblib
 from flask import Flask, render_template, request
 
-# Model accuracies
+# Model accuracies (GB, LR, MLP, RF)
 accuracy = [0.875, 0.675, 0.7, 0.915]
 
 # Output Labels
@@ -59,15 +59,14 @@ def predict(random_text):
         # Choosing the label based on the weighted sum
         if weighted_prediction > 0.5 :
             final_prediction = label[0]
-            confidence = int(100*round(0.9*weighted_prediction,2))
+            confidence = int(100*round(weighted_prediction,2))
         elif weighted_prediction < 0.5 :
             final_prediction = label[1]
-            confidence = int(100*round(0.9*(1 - weighted_prediction),2))
+            confidence = int(100*round((1 - weighted_prediction),2))
         else:
             final_prediction = label[2]
             confidence = 0
         
-
         return confidence,final_prediction
         
 
