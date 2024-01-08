@@ -23,8 +23,8 @@
                     text-align: center;
                 }
                 a button{
-                    background-color: #f7360b; /* White background color */
-            color: #f3f6f8; /* Blue text color */
+                    background-color: #f7360b; 
+            color: #f3f6f8; 
             margin: 10px;
             padding: 10px 20px;
             font-size: 16px;
@@ -38,7 +38,7 @@
     <h1>Prediction Results</h1>
     <p id="input_text"><b>Input Text:</b> {{ input_text }}</p>
     <p>RESULT : {{ result }}</p>
-<p>Confidence: <progress value="{{confidence}}" max="1"></progress> {{confidence}}%</p>
+<p>Confidence: <progress value="{{confidence}}" max="100"></progress> {{confidence}}%</p>
 <div class="go_back">
     <a href="/" style="text-decoration: none;"><button>Go Back</button></a>
 </div>
