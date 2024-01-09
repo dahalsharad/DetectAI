@@ -30,6 +30,8 @@ def predict(random_text):
         # Transform the new text using the loaded TF-IDF vectorizer
         random_text_tfidf = tfidf_vectorizer.transform([random_text])
 
+        print(random_text_tfidf)
+
         prediction = [0, 0, 0, 0]
 
         # Make predictions using the loaded classifier
