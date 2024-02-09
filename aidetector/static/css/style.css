@@ -1,0 +1,35 @@
+body, html {
+    height: 100%;
+    margin: 0;
+}
+.container {
+    display: flex;
+    height: 100%;
+}
+.input-side, .output-side {
+    flex: 1;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+.input-side {
+    overflow-y: auto;
+}
+.output-side {
+    overflow-y: auto;
+}
+.bar-container {
+    margin-bottom: 10px;
+}
+.bar {
+    height: 20px;
+    background-color: blue;
+    margin-bottom: 5px;
+    position: relative;
+}
+.bar-label {
+    position: absolute;
+    top: 0;
+    left: 5px;
+    color: white;
+}
