@@ -1,1 +1,3 @@
-place_models_inside_this_directory
+version https://git-lfs.github.com/spec/v1
+oid sha256:60d49e707dfe0b3f7ed2d68c2e0cd77c1776342b7731784d527798724c4e212c
+size 35
