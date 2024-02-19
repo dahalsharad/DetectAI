@@ -1,8 +1,38 @@
 # DetectAI
 
-#REQUIREMENTS
+## HOW TO Install ? 👷 
 
-install all packages in requirements.txt
+**1.** Clone [this](https://github.com/dahalsharad/DetectAI) repository.
+```terminal
+git clone git@github.com:dahalsharad/DetectAI.git
+```
+**2.** go to downloaded folder.
 
-download models from : https://drive.google.com/drive/folders/1_oxKNq63SDJYm1P5vBge538B6i9EmE4a?usp=sharing
-and place them inside models folder
+```terminal
+cd DetectAI
+```
+
+**3.** Create a Virtual Environment.
+
+```terminal
+python -m venv myenv
+```
+
+**4.** Activate Virtual Environment
+
+```terminal
+myenv\Scripts\activate
+```
+
+**5.**  Install requirements
+```terminal
+pip install -r requirements.txt
+```
+
+**6.**  Run the server.
+```terminal
+python manage.py runserver
+```
+
+**6.** visit 127.0.0.1:8000
+
