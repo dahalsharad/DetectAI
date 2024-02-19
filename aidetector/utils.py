@@ -10,7 +10,7 @@ import numpy as np
 import tensorflow as tf
 
 
-import fitz
+import PyPDF2
 import docx2txt
 from spire.doc import *
 from spire.doc.common import *
@@ -96,9 +96,23 @@ def store_file(file, extension):
 def read_file(extension):
     text = ""
     if extension==".pdf":
-        with fitz.open("uploads/files/temp.pdf") as doc:
-            for page in doc:
-                text += page.get_text()
+        pdfFileObj = open('uploads/files/temp.pdf', 'rb')
+
+        # creating a pdf reader object
+        pdfReader = PyPDF2.PdfReader(pdfFileObj)
+
+        # printing number of pages in pdf file
+        print(len(pdfReader.pages))
+
+        # creating a page object
+        pageObj = pdfReader.pages[0]
+
+        # extracting text from page
+        text = pageObj.extract_text()
+
+        # closing the pdf file object
+        pdfFileObj.close()
+
     
     elif extension==".txt":
         with open('uploads/files/temp.txt', 'r') as file:
@@ -109,7 +123,7 @@ def read_file(extension):
 
     elif extension ==".doc":
         document = Document()
-        document.LoadFromFile("uploads/files/temp.docx")
+        document.LoadFromFile("uploads/files/temp.doc")
         document.SaveToFile("uploads/files/t.docx", FileFormat.Docx2016)
         document.Close()
         text = docx2txt.process("uploads/files/t.docx")
