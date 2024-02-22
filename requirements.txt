@@ -42,7 +42,6 @@ lxml==5.1.0
 Markdown==3.5.2
 MarkupSafe==2.1.5
 ml-dtypes==0.2.0
-networkx==3.2.1
 nibabel==5.2.0
 nipype==1.8.6
 numpy==1.26.4
