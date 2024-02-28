@@ -14,14 +14,13 @@ const TextDragAndDrop = ({ onFilesSelected }) => {
     setHighlight(false);
   };
 
-  const handleDrop = (event) => {
+  const handleDrop = async (event) => {
     event.preventDefault();
     setHighlight(false);
 
     const files = event.dataTransfer.files;
     const filteredFiles = filterFiles(Array.from(files));
     setUploadedFiles(filteredFiles);
-    onFilesSelected(filteredFiles);
   };
 
   const openFileDialog = () => {
@@ -32,7 +31,6 @@ const TextDragAndDrop = ({ onFilesSelected }) => {
     const files = event.target.files;
     const filteredFiles = filterFiles(Array.from(files));
     setUploadedFiles(filteredFiles);
-    onFilesSelected(filteredFiles);
   };
 
   const filterFiles = (files) => {
