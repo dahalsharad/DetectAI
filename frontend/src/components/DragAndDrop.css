@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
+.drag-drop-area {
+    margin:40px 10vw;
+    border: 2px dashed #aaa;
+    border-radius: 5px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+  }
+  img{
+    width: 100px;
+    aspect-ratio:3/2;
+    object-fit: contain;
+  }
+  .highlight {
+    background-color: #f0f0f0;
+  }
+  
+  .file-input {
+    display: none;
+  }
+  
+  .drag-drop-text {
+    font-size: large;
+    color: white;
+  }
+  
+  .drag-drop-text .span1{
+    font-size: xx-large;
+    font-family: "Space Grotesk", sans-serif;
+    color: white;
+  }
+  .drag-drop-text .span2{
+    font-family: "Space Grotesk", sans-serif;
+    color: #AEFC06;
+    font-weight: 1000;
+  }
+  
+  
+  .drag-drop-text p {
+    margin: 5px 0;
+  }
+  

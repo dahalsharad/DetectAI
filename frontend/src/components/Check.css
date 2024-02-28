@@ -1,0 +1,31 @@
+.check{
+    margin: 8vh 10vw;  
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(58, 98, 113);
+}
+.check .image{
+    margin: 8px 4px 8px 8px;
+    width: 40vw;
+    line-height: 70px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+    color: #083a3a;
+    font-size: x-large;
+    color: whitesmoke;
+    cursor: pointer;
+}
+.check .text{
+    margin: 8px 8px 8px 4px;
+    width: 40vw;
+    line-height: 70px;
+    cursor: pointer;
+    text-align: center;
+    color: whitesmoke;
+    font-size: x-large;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+}
+.active {
+    background-color: #AEFC06 
+  }

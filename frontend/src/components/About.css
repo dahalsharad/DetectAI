@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
+.sections{
+    margin: 5vh 5vw;
+    background-color: rgb(67, 100, 133);
+}
+h3{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #FFF8DC;
+    margin: 0px 5vw;
+    text-align: justify;
+    font-size: x-large;
+}
+.sections h2{
+    font-family: "Space Grotesk", sans-serif;
+    color: #F5F5DC;
+    font-weight: bolder;
+}
+.sections p{
+    background-color: rgb(67, 100, 133);
+    margin: 10px;
+    text-align: justify;
+    font-family: "Space Grotesk", sans-serif;
+    color: #Ffffff;
+    font-size: larger;
+}
+.image-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 90vw; /* Adjust the max-width as needed */
+    margin: 0 auto; /* Center the container */
+  }
+  
+  .image-card {
+    border: solid 2px white;
+    padding: 10px;
+    width: 20em;
+    text-align: center; /* Center text */
+    margin: 10px;
+  }
+  
+  .image-card img {
+    width: 100%;
+    height: auto; /* Maintain aspect ratio */
+    border: 0px solid #ccc;
+    object-fit: contain;
+  }
+  
+  .image-card p {
+    margin-top: 10px;
+    font-size: large;
+    color: white;
+    margin-bottom: -5px;
+  }
+  
