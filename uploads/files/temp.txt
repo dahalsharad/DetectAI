@@ -1,81 +1,61 @@
-https://profile-photos.hackerone-user-content.com/variants/4l2h8xt2e1vd8rx3zo2qf90qxh94/4de4742e9f2080cae5560af6ba87bfc10d4615dcad7477b4736323d9aefd0955
-https://www.iconsdb.com/
-https://twitter.com/d_sharad_
-https://www.linkedin.com/in/sharaddahal
-https://github.com/dahalsharad
-https://blog.sharaddahal.com.np/
-http://sharaddahal.com.np
-https://sharaddahal.com.np/
-http://sharaddahal.com.np/assets/global/style.css
-https://sharaddahal.com.np/assets/global/style.css
-http://sharaddahal.com.np/assets/global/script.js
-https://sharaddahal.com.np/assets/global/script.js
-https://fonts.googleapis.com/css?family=Overpass+Mono:400,700
-http://sharaddahal.com.np/assets/index/style.css
-https://sharaddahal.com.np/assets/index/style.css
-https://sharaddahal.com.np/assets/index/script.js
-http://sharaddahal.com.np/assets/index/script.js
-http://example.com/</code
-https://help.github.com/pages/
-https://githubstatus.com
-https://twitter.com/githubstatus
-http://sharaddahal.com.np/assets/index/images/twitter.png
-https://sharaddahal.com.np/assets/index/images/twitter.png
-http://sharaddahal.com.np/assets/index/images/github.png
-https://sharaddahal.com.np/assets/index/images/github.png
-http://sharaddahal.com.np/assets/index/images/linkedin.png
-https://sharaddahal.com.np/assets/index/images/linkedin.png
-http://sharaddahal.com.np/assets/index/images/circle.svg
-https://sharaddahal.com.np/assets/index/images/circle.svg
-http://sharaddahal.com.np/
-https://sharaddahal.com.np/ext/jquery.min.js
-http://opensource.org/licenses/MIT
-https://sharaddahal.com.np/ext/particles.min.js
-https://sharaddahal.com.np/ext/bootstrap.min.css
-https://getbootstrap.com/)
-https://github.com/twbs/bootstrap/blob/main/LICENSE)
-http://www.w3.org/2000/svg
-https://sharaddahal.com.np
-https://blog.sharaddahal.com.np/email-address-format-php-filter-var-function-and-rfc-5321/
-https://blog.sharaddahal.com.np
-https://blog.sharaddahal.com.np/404.html
-https://blog.sharaddahal.com.np/assets/images/favicon.png
-https://blog.sharaddahal.com.np/atom.xml
-https://blog.sharaddahal.com.np/feed.json
-https://blog.sharaddahal.com.np/sitemap.xml
-https://facebook.com/dahal.sharad
-https://instagram.com/sharad_dahal
-https://linkedin.com/in/sharaddahal
-https://blog.sharaddahal.com.np/a-day-of-unexpected-turns/
-https://blog.sharaddahal.com.np/assets/js/ephesus.js
-https://blog.sharaddahal.com.np/assets/css/highlight.css
-https://blog.sharaddahal.com.np/assets/css/style.css
-https://fonts.googleapis.com/css?family=Catamaran:400,500,600,700&subset=latin-ext
-https://blog.sharaddahal.com.np/a-day-of-unexpected-turns/assets/js/ephesus.js
-https://blog.sharaddahal.com.np/a-day-of-unexpected-turns/assets/css/highlight.css
-https://blog.sharaddahal.com.np/a-day-of-unexpected-turns/assets/css/style.css
-https://blog.sharaddahal.com.np/a-day-of-unexpected-turns/about
-https://blog.sharaddahal.com.np/about/
-https://www.facebook.com/sharer/sharer.php?u=https://blog.sharaddahal.com.np/A-Day-of-Unexpected-Turns
-https://twitter.com/intent/tweet?source=tweetbutton&amp;original_referer=https://blog.sharaddahal.com.np/A-Day-of-Unexpected-Turns&amp;text=A
-https://blog.sharaddahal.com.np/A-Day-of-Unexpected-Turns
-https://api.whatsapp.com/send?text=https://blog.sharaddahal.com.np/A-Day-of-Unexpected-Turns
-https://disqus.com/?ref_noscript
-http://blog.sharaddahal.com.np
-https://blog.sharaddahal.com.np/about/assets/js/ephesus.js
-https://blog.sharaddahal.com.np/about/assets/css/highlight.css
-https://blog.sharaddahal.com.np/about/assets/css/style.css
-https://blog.sharaddahal.com.np/about
-https://blog.sharaddahal.com.np/about/about
-http://www.w3.org/2005/Atom
-https://blog.sharaddahal.com.np</id
-https://blog.sharaddahal.com.np/A-Day-of-Unexpected-Turns</id
-http://www.w3.org/2001/XMLSchema-instance
-http://www.sitemaps.org/schemas/sitemap/0.9
-http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd
-https://blog.sharaddahal.com.np/a-day-of-unexpected-turns/</loc
-https://blog.sharaddahal.com.np/about/</loc
-https://blog.sharaddahal.com.np/</loc
-https://blog.sharaddahal.com.np/tags/</loc
-https://jsonfeed.org/version/1
-https://blog.sharaddahal.com.np/assets/images/apple-touch-icon.png
+Consider B=9 first
+if B=9 then A=8 which is not possible as then B+B+1 is not equal to A
+if B=8 then A=6 which is not possible for same reason
+Take B=7 then A=4 which is possible as it is not leaving any carry over.
+So,
+M=A+A+x where x is carry over from S+L+y where y is carry over from E+L
+knowing the fact that x and y can take maximum value of 1 and minimum value of 0
+We can say
+M should be either 8 or 9
+8 when x=0
+9 when x=1
+Assuming M=8
+that is x=0
+S+L+y=E
+E+L= 10*y+S
+S+L+y+L=10*y+S
+2*L=9*y
+where y can take either 0 or 1
+if y=0 then L=0 then S and E are not distint which is not possible according to question.
+if y=1
+then L=4.5 which is again not possible as L must be a single digit among 0 to 9
+So, M=8 is not possible
+So,our question further reduces to
+1
+74SE
++74LL
+------------
+1 49ES
+
+Now,
+S+L=10*1+E=10+E,and
+E+L=10*y+S
+So,
+here y can take maximum and minimum values of 1 and 0 respectively.
+So,
+if y=0
+Then,
+E+L=S,or S-L=E,and
+S+L=10+E
+Adding both we get,
+2*S=2*E+10
+or
+S=E+5
+Subtracting 1st equation from 2nd we get
+2*L=10
+or L=5
+
+So,our question further reduces to
+1 0
+74SE
++7455
+------------
+1 49ES
+
+So,
+E+5=S,and
+S+5+0=E+10*1
+S+5=E+10
+S=E+5
+Now we have to choose digits from 0,1,2,3,4,5,6,7,8,and 9 other than 1,4,7,9,and 5.
+So,we can take values of E and S from 0,2,3,6,8 such that S=E+5

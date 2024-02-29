@@ -1,11 +1,13 @@
 import React, { useState, useRef } from 'react';
 import './DragAndDrop.css';
 import addimage from '../images/addimage2.png';
+import ApiResponseDisplay from './ApiResponseDisplay'; // Import the new component
 
 const DragAndDrop = ({ onFilesSelected }) => {
   const [highlight, setHighlight] = useState(false);
   const [uploadedImage, setUploadedImage] = useState(null);
   const [apiResponse, setApiResponse] = useState(null);
+  const [showDragDrop, setShowDragDrop] = useState(true); // State to manage drag and drop area visibility
   const fileInputRef = useRef(null);
 
   const handleDragOver = (event) => {
@@ -74,38 +76,40 @@ const DragAndDrop = ({ onFilesSelected }) => {
       const responseData = await response.json();
       console.log(response)
       setApiResponse(responseData);
+      setShowDragDrop(false); // Hide the drag and drop area
     } catch (error) {
       console.error('Error uploading image:', error);
     }
   };
 
   return (
-    <div
-      className={`drag-drop-area ${highlight ? 'highlight' : ''}`}
-      onDragOver={handleDragOver}
-      onDragLeave={handleDragLeave}
-      onDrop={handleDrop}
-      onClick={openFileDialog}
-    >
-      <img src={uploadedImage || addimage} alt="Uploaded content"/>
-      <input
-        ref={fileInputRef}
-        className="file-input"
-        type="file"
-        onChange={handleFileInputChange}
-        accept=".jpg,.jpeg,.png"
-        multiple
-      />
-      <div className="drag-drop-text">
-        <p><span className="span1">Drag and drop</span></p>
-        <p> or <span className="span2">upload</span> your image here.</p>
-      </div>
-      {apiResponse && (
-        <div className="api-response">
-          <h3>API Response:</h3>
-          <pre>{JSON.stringify(apiResponse, null, 2)}</pre>
+    <div>
+      {showDragDrop && (
+        <div
+          className={`drag-drop-area ${highlight ? 'highlight' : ''}`}
+          onDragOver={handleDragOver}
+          onDragLeave={handleDragLeave}
+          onDrop={handleDrop}
+          onClick={openFileDialog}
+        >
+          <img src={uploadedImage || addimage} alt="Uploaded content"/>
+          <input
+            ref={fileInputRef}
+            className="file-input"
+            type="file"
+            onChange={handleFileInputChange}
+            accept=".jpg,.jpeg,.png"
+            multiple
+          />
+          <div className="drag-drop-text">
+            <p><span className="span1">Drag and drop</span></p>
+            <p> or <span className="span2">upload</span> your image here.</p>
+          </div>
         </div>
       )}
+
+      {/* Render ApiResponseDisplay if apiResponse exists */}
+      {apiResponse && <ApiResponseDisplay apiResponse={apiResponse} />}
     </div>
   );
 };

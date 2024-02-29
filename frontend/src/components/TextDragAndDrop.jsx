@@ -1,12 +1,12 @@
 import React, { useState, useRef } from 'react';
 import addtext from '../images/textupload.png';
-
+import TextApiResponseDisplay from "./TextApiResponseDisplay";
 const TextDragAndDrop = ({ onFilesSelected }) => {
   const [highlight, setHighlight] = useState(false);
   const [uploadedFiles, setUploadedFiles] = useState([]);
   const [apiResponse, setApiResponse] = useState(null);
   const fileInputRef = useRef(null);
-
+  const [showTextDragDrop, setShowTextDragDrop] = useState(true);
   const handleDragOver = (event) => {
     event.preventDefault();
     setHighlight(true);
@@ -72,13 +72,16 @@ const TextDragAndDrop = ({ onFilesSelected }) => {
     
       const responseData = await response.json();
       setApiResponse(responseData);
+      setShowTextDragDrop(false);
     } catch (error) {
       console.error('Error uploading text file:', error);
     }
   };
 
   return (
-    <div
+<div>    
+  {showTextDragDrop && (
+<div
       className={`drag-drop-area ${highlight ? 'highlight' : ''}`}
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
@@ -98,22 +101,10 @@ const TextDragAndDrop = ({ onFilesSelected }) => {
         <p><span className="span1">Drag and drop</span></p>
         <p> or <span className="span2">upload</span> your text file here.</p>
       </div>
-      {uploadedFiles.length > 0 && (
-        <div className="uploaded-files">
-          <h3>Uploaded Text Files:</h3>
-          <ul>
-            {uploadedFiles.map((file, index) => (
-              <li key={index}>{file.name}</li>
-            ))}
-          </ul>
-        </div>
+      </div>
       )}
-      {apiResponse && (
-        <div className="api-response">
-          <h3>API Response:</h3>
-          <pre>{JSON.stringify(apiResponse, null, 2)}</pre>
-        </div>
-      )}
+  {apiResponse && <TextApiResponseDisplay apiResponse={apiResponse} />}
+
     </div>
   );
 };

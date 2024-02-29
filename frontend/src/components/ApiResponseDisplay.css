@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
+.api-response p{
+    color: white;
+    font-size: xx-large;
+    text-align: center;
+    font-family: "Space Grotesk", sans-serif;
+
+}
+.progress {
+    height: 1.5rem;
+    background-color: #e0e0e0;
+    border-radius: 2px;
+    
+}
+
+.progress-bar {
+    position: center;
+      width: 400px;
+    /* height: 100%; */
+    background-color: #007bff;
+    border-radius: 2px;
+  }
+  
