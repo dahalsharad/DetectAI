@@ -30,12 +30,12 @@ def process_text(request):
             store_file(file,file_extension)
             text_from_file = read_file(file_extension)
             random_text,prediction,confidence,final_prediction=predict_text(text_from_file)
-            data = {'GB,LR,MLP,RF': prediction, 'input_text': random_text, 'confidence': confidence, 'final_prediction': final_prediction}
+            data = {'confidence': confidence, 'final_prediction': final_prediction}
             return JsonResponse(data)
         
         elif not file and text:
             random_text,prediction,confidence,final_prediction=predict_text(text)
-            data = {'GB,LR,MLP,RF': prediction, 'input_text': random_text, 'confidence': confidence, 'final_prediction': final_prediction}
+            data = {'confidence': confidence, 'final_prediction': final_prediction}
             return JsonResponse(data)
         else:
             data ={'error': "either text or file required"}
