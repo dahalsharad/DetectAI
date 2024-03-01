@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=D:\Major Project\DetectAI\myenv
+set VIRTUAL_ENV=C:\Users\Siddhant\Desktop\proj\DetectAI\myenv
 
 if not defined PROMPT set PROMPT=$P$G
 
