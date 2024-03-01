@@ -1,11 +1,13 @@
 # DetectAI
 
-## HOW TO Install ? 👷 
+## HOW TO Install ? 👷
 
 **1.** Clone [this](https://github.com/dahalsharad/DetectAI) repository.
+
 ```terminal
-git clone git@github.com:dahalsharad/DetectAI.git
+git clone https://github.com/dahalsharad/DetectAI.git
 ```
+
 **2.** go to downloaded folder.
 
 ```terminal
@@ -24,15 +26,16 @@ python -m venv myenv
 myenv\Scripts\activate
 ```
 
-**5.**  Install requirements
+**5.** Install requirements
+
 ```terminal
 pip install -r requirements.txt
 ```
 
-**6.**  Run the server.
+**6.** Run the server.
+
 ```terminal
 python manage.py runserver
 ```
 
 **6.** visit 127.0.0.1:8000
-
