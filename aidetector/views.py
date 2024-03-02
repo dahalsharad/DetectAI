@@ -3,9 +3,12 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import os
 from django.shortcuts import render
+import shutil
 
 
-from .utils import predict_text,store_file,read_file,store_image,predict_image
+from .utils import predict_text,store_file,store_image,predict_image
+from .texttoimage import *
+from .ocr import *
 
 def get_text(request):
     return render(request, 'text.html')
@@ -25,12 +28,22 @@ def process_text(request):
     if request.method == 'POST':
         file =request.FILES.get("fileToUpload")
         text = request.POST.get("inputText")
+        heatmap = 1
         if file:
             file_extension = os.path.splitext(file.name)[1].lower()
             store_file(file,file_extension)
-            text_from_file = read_file(file_extension)
-            random_text,prediction,confidence,final_prediction=predict_text(text_from_file)
-            data = {'confidence': confidence, 'final_prediction': final_prediction}
+            if file_extension == ".pdf":
+                pdf_to_image("uploads/files/temp.pdf", "uploads/temp/output")
+            else:
+                file_to_image(file_extension,"uploads/files/","uploads/temp/output")
+            document_authenticity,final_confidence = start_img_processing(heatmap)
+
+            data = {'confidence': final_confidence, 'final_prediction': document_authenticity}
+            if heatmap == 1:
+                create_highlighted_pdf()
+
+            shutil.rmtree("uploads/temp/output")
+            shutil.rmtree("uploads/highlight")
             return JsonResponse(data)
         
         elif not file and text:
