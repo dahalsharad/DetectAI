@@ -91,3 +91,9 @@ Werkzeug==3.0.1
 wrapt==1.14.1
 zope.interface==6.2
 django-cors-headers
+matplotlib
+opencv-python
+pytesseract
+pdf2image
+reportlab
+pygments
