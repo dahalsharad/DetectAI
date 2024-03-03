@@ -15,6 +15,12 @@ import docx2txt
 from spire.doc import *
 from spire.doc.common import *
 
+import numpy as np
+import tensorflow as tf
+import matplotlib.pyplot as plt
+import matplotlib.cm as cm
+import keras
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 ####### requirements for predict_text function ############
@@ -182,3 +188,92 @@ def predict_image(name):
         final_prediction = image_label[2]
         confidence = 0
     return name, confidence, final_prediction
+
+
+########################
+# image heatmap
+########################
+
+def save_and_display_gradcam(img_path, heatmap, cam_path="cam.jpg", alpha=0.9):
+    # Load the original image
+    cam_path = "aidetector/static/image_heatmap.jpg"
+    img = keras.utils.load_img(img_path)
+    img = keras.utils.img_to_array(img)
+
+    # Rescale heatmap to a range 0-255
+    heatmap = np.uint8(255 * heatmap)
+
+    # Use jet colormap to colorize heatmap
+    jet = cm.get_cmap("jet")
+
+    # Use RGB values of the colormap
+    jet_colors = jet(np.arange(256))[:, :3]
+    jet_heatmap = jet_colors[heatmap]
+
+    # Create an image with RGB colorized heatmap
+    jet_heatmap = keras.utils.array_to_img(jet_heatmap)
+    jet_heatmap = jet_heatmap.resize((img.shape[1], img.shape[0]))
+    jet_heatmap = keras.utils.img_to_array(jet_heatmap)
+
+    # Superimpose the heatmap on original image
+    superimposed_img = jet_heatmap * alpha + img
+    superimposed_img = keras.utils.array_to_img(superimposed_img)
+
+    # Save the superimposed image
+    superimposed_img.save(cam_path)
+
+def make_gradcam_heatmap(img_array, model, last_conv_layer_name, pred_index=None):
+    # First, we create a model that maps the input image to the activations
+    # of the last conv layer as well as the output predictions
+    grad_model = keras.models.Model(
+        model.inputs, [model.get_layer(last_conv_layer_name).output, model.output]
+    )
+
+    # Then, we compute the gradient of the top predicted class for our input image
+    # with respect to the activations of the last conv layer
+    with tf.GradientTape() as tape:
+        last_conv_layer_output, preds = grad_model(img_array)
+        if pred_index is None:
+            pred_index = tf.argmax(preds[0])
+        class_channel = preds[:, pred_index]
+
+    # This is the gradient of the output neuron (top predicted or chosen)
+    # with regard to the output feature map of the last conv layer
+    grads = tape.gradient(class_channel, last_conv_layer_output)
+
+    # This is a vector where each entry is the mean intensity of the gradient
+    # over a specific feature map channel
+    pooled_grads = tf.reduce_mean(grads, axis=(0, 1, 2))
+
+    # We multiply each channel in the feature map array
+    # by "how important this channel is" with regard to the top predicted class
+    # then sum all the channels to obtain the heatmap class activation
+    last_conv_layer_output = last_conv_layer_output[0]
+    heatmap = last_conv_layer_output @ pooled_grads[..., tf.newaxis]
+    heatmap = tf.squeeze(heatmap)
+
+    # For visualization purpose, we will also normalize the heatmap between 0 & 1
+    heatmap = tf.maximum(heatmap, 0) / tf.math.reduce_max(heatmap)
+    return heatmap.numpy()
+
+
+def image_heatmap_generator(img_path):
+
+    test_image = tf.keras.preprocessing.image.load_img(img_path, target_size=(256, 256, 3))
+    img = tf.keras.preprocessing.image.img_to_array(test_image)
+    img = np.expand_dims(img, axis=0)
+    img = img/255.
+
+    # Generate class activation heatmaps
+    heatmap_1 = make_gradcam_heatmap(img, model, "conv5_block16_1_conv")
+    # heatmap_2 = make_gradcam_heatmap(img, model, "conv5_block16_2_conv")
+    # heatmap_3 = make_gradcam_heatmap(img, model, "conv5_block15_1_conv")
+    # heatmap_4 = make_gradcam_heatmap(img, model, "conv5_block14_1_conv")
+    # heatmap_5 = make_gradcam_heatmap(img, model, "conv5_block13_2_conv")
+
+    # Merge heatmaps
+    # merged_heatmap = (heatmap_1 + heatmap_2 ) / 3.0
+
+
+
+    save_and_display_gradcam(img_path, heatmap_1)

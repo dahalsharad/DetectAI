@@ -6,7 +6,7 @@ from django.shortcuts import render
 import shutil
 
 
-from .utils import predict_text,store_file,store_image,predict_image,read_file
+from .utils import *
 from .texttoimage import *
 from .ocr import *
 
@@ -76,7 +76,9 @@ def process_image(request):
         store_image(image, image.name)
         image_path = os.path.join('aidetector/static/image',image.name)
         path,confidence,final_prediction=predict_image(image_path)
-        data = {'path': path, 'confidence': confidence, 'final_prediction': final_prediction}
+        image_heatmap_generator(image_path)
+        heatmap_path = "http://127.0.0.1:8000/aidetector/static/image_heatmap.jpg"
+        data = {'path': heatmap_path, 'confidence': confidence, 'final_prediction': final_prediction}
         return JsonResponse(data)
     else:
         return JsonResponse({'error': 'Only POST requests are allowed'})
