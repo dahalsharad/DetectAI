@@ -6,7 +6,7 @@ from django.shortcuts import render
 import shutil
 
 
-from .utils import predict_text,store_file,store_image,predict_image
+from .utils import predict_text,store_file,store_image,predict_image,read_file
 from .texttoimage import *
 from .ocr import *
 
@@ -29,7 +29,7 @@ def process_text(request):
         file =request.FILES.get("fileToUpload")
         text = request.POST.get("inputText")
         heatmap = 1
-        if file:
+        if file and heatmap == 1:
             file_extension = os.path.splitext(file.name)[1].lower()
             store_file(file,file_extension)
             if file_extension == ".pdf":
@@ -46,10 +46,22 @@ def process_text(request):
             shutil.rmtree("uploads/highlight")
             return JsonResponse(data)
         
+
+        elif file and heatmap != 1:
+            file_extension = os.path.splitext(file.name)[1].lower()
+            store_file(file,file_extension)
+            text_from_file = read_file(file_extension)
+            random_text,prediction,confidence,final_prediction=predict_text(text_from_file)
+            data = {'confidence': confidence, 'final_prediction': final_prediction}
+            return JsonResponse(data)
+        
+
         elif not file and text:
             random_text,prediction,confidence,final_prediction=predict_text(text)
             data = {'confidence': confidence, 'final_prediction': final_prediction}
             return JsonResponse(data)
+        
+
         else:
             data ={'error': "either text or file required"}
             return JsonResponse(data)

@@ -175,5 +175,5 @@ def start_img_processing(heatmap):
         final_confidence = greater_than_50_avg
     else:
         document_authenticity = "HUMAN WRITTEN"
-        final_confidence = less_than_50_avg
+        final_confidence = 100 - less_than_50_avg
     return document_authenticity,final_confidence

@@ -8,7 +8,10 @@ from pdf2image import convert_from_path
 from PIL import Image
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
-import os
+from pathlib import Path
+from pygments.formatters import ImageFormatter
+from pygments import highlight
+from pygments.lexers import TextLexer
 
 def create_highlighted_pdf():
     # Directory containing the images
@@ -51,6 +54,10 @@ def pdf_to_image(pdf_path, output_folder):
         image_path = f"{output_folder}/page_{i + 1}.jpg"  # Change extension as needed
         image.save(image_path, "JPEG")
 
+def create_image(lines, output_file):
+    lexer = TextLexer()
+    png = highlight('\n'.join(lines), lexer, ImageFormatter(line_numbers=False))
+    Path(output_file).write_bytes(png)
 
 def file_to_image(extension,text_file,output_folder):
     text = ""
@@ -76,44 +83,43 @@ def file_to_image(extension,text_file,output_folder):
         os.remove("uploads/temp/t.docx")
         lines = text.split("\n")
     
-    font_size=14
-    lines_per_page=48
-    # Load font
-    font = ImageFont.load_default()
 
     # Create output folder if it doesn't exist
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
 
+    with open(text_file, "r+") as text_file_open:
+        text_file_open.seek(0)
+        text_file_open.truncate()
 
-    total_lines = len(lines)
-    num_pages = math.ceil(total_lines / lines_per_page)
+        # Process each line
+        for line in lines:
+            # Split the line into words
+            words = line.split()
 
-    # Iterate through pages
-    for page_num in range(num_pages):
-        # Calculate starting and ending line indices for this page
-        start_index = page_num * lines_per_page
-        end_index = min((page_num + 1) * lines_per_page, total_lines)
-        page_lines = lines[start_index:end_index]
+            # Check if the line has more than 20 words
+            if len(words) > 20:
+                # Insert newline character after every 20 words
+                new_lines = [' '.join(words[i:i+20]) for i in range(0, len(words), 20)]
+                text_file_open.write('\n'.join(new_lines) + '\n')
+            else:
+                # If less than or equal to 20 words, write the line as it is
+                text_file_open.write(line)
 
-        # Calculate image size
-        max_line_length = max(len(line) for line in page_lines)
-        image_width = max_line_length * font_size
-        image_height = len(page_lines) * font_size
 
-        # Create image
-        image = Image.new("RGB", (image_width, image_height), "white")
-        draw = ImageDraw.Draw(image)
+    with open(text_file, "r") as text_file_open:
+    # Read lines from the file
+        lines = text_file_open.readlines()
 
-        # Write text to image
-        y_offset = 0
-        for line in page_lines:
-            draw.text((0, y_offset), line, fill="black", font=font)
-            y_offset += font_size
+        # Iterate through the lines in groups of 48
+        for i in range(0, len(lines), 48):
+            # Extract 48 lines or fewer if there are fewer than 48 lines left
+            group_of_lines = lines[i:i+48]
+            
+            # Create an image for the group of lines
+            output_file = f"{output_folder}/page_{i + 1}.jpg"
+            create_image(group_of_lines, output_file)
 
-        # Save image
-        output_filename = os.path.join(output_folder, f"page_{page_num + 1}.png")
-        image.save(output_filename)
 
 
 # create_highlighted_pdf()

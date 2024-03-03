@@ -1,61 +1,10 @@
-Consider B=9 first
-if B=9 then A=8 which is not possible as then B+B+1 is not equal to A
-if B=8 then A=6 which is not possible for same reason
-Take B=7 then A=4 which is possible as it is not leaving any carry over.
-So,
-M=A+A+x where x is carry over from S+L+y where y is carry over from E+L
-knowing the fact that x and y can take maximum value of 1 and minimum value of 0
-We can say
-M should be either 8 or 9
-8 when x=0
-9 when x=1
-Assuming M=8
-that is x=0
-S+L+y=E
-E+L= 10*y+S
-S+L+y+L=10*y+S
-2*L=9*y
-where y can take either 0 or 1
-if y=0 then L=0 then S and E are not distint which is not possible according to question.
-if y=1
-then L=4.5 which is again not possible as L must be a single digit among 0 to 9
-So, M=8 is not possible
-So,our question further reduces to
-1
-74SE
-+74LL
-------------
-1 49ES
-
-Now,
-S+L=10*1+E=10+E,and
-E+L=10*y+S
-So,
-here y can take maximum and minimum values of 1 and 0 respectively.
-So,
-if y=0
-Then,
-E+L=S,or S-L=E,and
-S+L=10+E
-Adding both we get,
-2*S=2*E+10
-or
-S=E+5
-Subtracting 1st equation from 2nd we get
-2*L=10
-or L=5
-
-So,our question further reduces to
-1 0
-74SE
-+7455
-------------
-1 49ES
-
-So,
-E+5=S,and
-S+5+0=E+10*1
-S+5=E+10
-S=E+5
-Now we have to choose digits from 0,1,2,3,4,5,6,7,8,and 9 other than 1,4,7,9,and 5.
-So,we can take values of E and S from 0,2,3,6,8 such that S=E+5
+The presence of dark matter (DM) in the halo is inferred from its gravitational effect on a spiral galaxy's rotation
+curve. Without large amounts of mass throughout the (roughly spherical) halo, the rotational velocity of the galaxy would decrease at
+large distances from the galactic center, just as the orbital speeds of the outer planets decrease with distance from the
+Sun. However, observations of spiral galaxies, particularly radio observations of line emission from neutral atomic hydrogen (known, in astronomical parlance,
+as 21 cm Hydrogen line, H one, and H I line), show that the rotation curve of most spiral galaxies
+flattens out, meaning that rotational velocities do not decrease with distance from the galactic center.[11] The absence of any visible
+matter to account for these observations implies either that unobserved (dark) matter, first proposed by Ken Freeman in 1970, exist,
+or that the theory of motion under gravity (general relativity) is incomplete. Freeman noticed that the expected decline in velocity
+was not present in NGC 300 nor M33, and considered an undetected mass to explain it. The DM Hypothesis has
+been reinforced by several studies.
