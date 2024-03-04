@@ -12,7 +12,6 @@ python manage.py runserver
 
 # FRONTEND
 ```terminal
-git clone https://github.com/dahalsharad/DetectAI.git
 cd frontend
 npm install
 npm start
