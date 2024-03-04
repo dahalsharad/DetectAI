@@ -154,9 +154,9 @@ const TextDragAndDrop = ({ onFilesSelected }) => {
           <textarea
             value={enteredText}
             onChange={handleTextareaChange}
-            placeholder="Enter your text here for prediction..."
+            placeholder="Enter your text"
           />
-          <button onClick={handleSubmitText}>Submit Text</button>
+          <button onClick={handleSubmitText}>Submit</button>
         </div>
       )}
       {apiResponse && (

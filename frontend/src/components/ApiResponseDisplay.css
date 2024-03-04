@@ -18,14 +18,13 @@
 }
 
 .progress-bar {
-    /* position: center; */
-    /* height: 100%; */
     background-color: #007bff;
     border-radius: 2px;
 }
 .api-response button{
     margin: 40px auto;
     color: white;
+    background-color: #047c44;
     border-radius: 5px;
     font-size: large;
     font-family: "Space Grotesk", sans-serif;

@@ -28,7 +28,7 @@ const TextApiResponseDisplay = ({ apiResponse, fileDropped }) => {
         ></div>
       </div>
       {fileDropped && (
-        <button onClick={handleDownload}>Show Highlighted Output</button>
+        <button onClick={handleDownload}>View Highlighted PDF</button>
       )}
     </div>
   );
