@@ -1,3 +1,4 @@
 models/
 myenv/
 aidetector/__pycache__
+frontend/node_modules
