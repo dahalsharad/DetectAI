@@ -4,15 +4,16 @@ DetectAI is a modular tool that uses state of the art technoques to identify ai 
 
 # BACKEND
 ```terminal
-git clone https://github.com/dahalsharad/DetectAI.git
-cd DetectAI
-pip install -r requirements.txt
-python manage.py runserver
+1.git clone https://github.com/dahalsharad/DetectAI.git
+2.cd DetectAI
+3.pip install -r requirements.txt
+4.python manage.py runserver
 ```
 
 # FRONTEND
 ```terminal
-cd frontend
-npm install
-npm start
+1.cd frontend
+2.npm install
+3.npm start
 ```
+
