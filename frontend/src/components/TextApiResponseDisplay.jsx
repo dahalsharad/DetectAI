@@ -1,17 +1,22 @@
 import React from 'react';
 import "./ApiResponseDisplay.css"
-const ApiResponseDisplay = ({ apiResponse }) => {
-  const { path, confidence, final_prediction } = apiResponse;
 
-  // Calculate the confidence percentage
+const TextApiResponseDisplay = ({ apiResponse, fileDropped }) => {
+  const { confidence, final_prediction } = apiResponse;
+
   const confidencePercentage = confidence;
+
+  const handleDownload = () => {
+    const downloadUrl = 'http://127.0.0.1:8000/aidetector/static/highlighted_output.pdf';
+
+    window.open(downloadUrl, '_blank');
+  };
 
   return (
     <div className="api-response">
-      <h3>API Response:</h3>
-          <p>Final Prediction: {final_prediction}</p>
+      <p>Final Prediction: {final_prediction}</p>
       {/* Progress bar for confidence */}
-          <p>Confidence: {confidence}%</p>
+      <p>Confidence: {confidence}%</p>
       <div className="progress">
         <div
           className="progress-bar"
@@ -20,12 +25,13 @@ const ApiResponseDisplay = ({ apiResponse }) => {
           aria-valuenow={confidencePercentage}
           aria-valuemin="0"
           aria-valuemax="100"
-          ></div>
+        ></div>
       </div>
-      {/* Construct the URL to the image using the relative path */}
-      {path && <img src={`../../../aidetector/static/image/${path}`} alt="Uploaded content" />}
+      {fileDropped && (
+        <button onClick={handleDownload}>Show Highlighted Output</button>
+      )}
     </div>
   );
 };
 
-export default ApiResponseDisplay;
+export default TextApiResponseDisplay;

@@ -8,7 +8,6 @@ const ApiResponseDisplay = ({ apiResponse }) => {
 
   return (
     <div className="api-response">
-      <h3>API Response:</h3>
           <p>Final Prediction: {final_prediction}</p>
       {/* Progress bar for confidence */}
           <p>Confidence: {confidence}%</p>
@@ -23,7 +22,7 @@ const ApiResponseDisplay = ({ apiResponse }) => {
           ></div>
       </div>
       {/* Construct the URL to the image using the relative path */}
-      {path && <img src={`../../../aidetector/static/image/${path}`} alt="Uploaded content" />}
+      {path && <img src={`${path}`} style={{width: "400px", display: "block",margin: "10px auto"}} alt="Uploaded content" />}
     </div>
   );
 };

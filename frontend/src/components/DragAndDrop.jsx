@@ -1,13 +1,13 @@
 import React, { useState, useRef } from 'react';
 import './DragAndDrop.css';
 import addimage from '../images/addimage2.png';
-import ApiResponseDisplay from './ApiResponseDisplay'; // Import the new component
+import ApiResponseDisplay from './ApiResponseDisplay'; 
 
 const DragAndDrop = ({ onFilesSelected }) => {
   const [highlight, setHighlight] = useState(false);
   const [uploadedImage, setUploadedImage] = useState(null);
   const [apiResponse, setApiResponse] = useState(null);
-  const [showDragDrop, setShowDragDrop] = useState(true); // State to manage drag and drop area visibility
+  const [showDragDrop, setShowDragDrop] = useState(true); 
   const fileInputRef = useRef(null);
 
   const handleDragOver = (event) => {
@@ -76,7 +76,7 @@ const DragAndDrop = ({ onFilesSelected }) => {
       const responseData = await response.json();
       console.log(response)
       setApiResponse(responseData);
-      setShowDragDrop(false); // Hide the drag and drop area
+      setShowDragDrop(false); 
     } catch (error) {
       console.error('Error uploading image:', error);
     }
@@ -108,7 +108,6 @@ const DragAndDrop = ({ onFilesSelected }) => {
         </div>
       )}
 
-      {/* Render ApiResponseDisplay if apiResponse exists */}
       {apiResponse && <ApiResponseDisplay apiResponse={apiResponse} />}
     </div>
   );
