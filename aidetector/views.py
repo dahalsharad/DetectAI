@@ -38,7 +38,7 @@ def process_text(request):
                 file_to_image(file_extension,"uploads/files/","uploads/temp/output")
             document_authenticity,final_confidence = start_img_processing(heatmap)
 
-            data = {'confidence': final_confidence, 'final_prediction': document_authenticity}
+            data = {'confidence': round(final_confidence,2), 'final_prediction': document_authenticity}
             if heatmap == 1:
                 create_highlighted_pdf()
 
@@ -52,13 +52,13 @@ def process_text(request):
             store_file(file,file_extension)
             text_from_file = read_file(file_extension)
             random_text,prediction,confidence,final_prediction=predict_text(text_from_file)
-            data = {'confidence': confidence, 'final_prediction': final_prediction}
+            data = {'confidence': round(confidence,2), 'final_prediction': final_prediction}
             return JsonResponse(data)
         
 
         elif not file and text:
             random_text,prediction,confidence,final_prediction=predict_text(text)
-            data = {'confidence': confidence, 'final_prediction': final_prediction}
+            data = {'confidence': round(confidence,2), 'final_prediction': final_prediction}
             return JsonResponse(data)
         
 
@@ -78,7 +78,7 @@ def process_image(request):
         path,confidence,final_prediction=predict_image(image_path)
         image_heatmap_generator(image_path)
         heatmap_path = "http://127.0.0.1:8000/aidetector/static/image_heatmap.jpg"
-        data = {'path': heatmap_path, 'confidence': confidence, 'final_prediction': final_prediction}
+        data = {'path': heatmap_path, 'confidence': round(confidence,2), 'final_prediction': final_prediction}
         return JsonResponse(data)
     else:
         return JsonResponse({'error': 'Only POST requests are allowed'})

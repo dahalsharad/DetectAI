@@ -1,41 +1,19 @@
 # DetectAI
-
+DetectAI is a modular tool that uses state of the art technoques to identify ai generated text and deepfake images.
 ## HOW TO Install ? 👷
 
-**1.** Clone [this](https://github.com/dahalsharad/DetectAI) repository.
-
+# BACKEND
 ```terminal
 git clone https://github.com/dahalsharad/DetectAI.git
-```
-
-**2.** go to downloaded folder.
-
-```terminal
 cd DetectAI
-```
-
-**3.** Create a Virtual Environment.
-
-```terminal
-python -m venv myenv
-```
-
-**4.** Activate Virtual Environment
-
-```terminal
-myenv\Scripts\activate
-```
-
-**5.** Install requirements
-
-```terminal
 pip install -r requirements.txt
-```
-
-**6.** Run the server.
-
-```terminal
 python manage.py runserver
 ```
 
-**6.** visit 127.0.0.1:8000
+# FRONTEND
+```terminal
+git clone https://github.com/dahalsharad/DetectAI.git
+cd frontend
+npm install
+npm start
+```
