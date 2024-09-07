@@ -1,5 +1,5 @@
 # DetectAI
-DetectAI is a modular tool that uses state of the art technoques to identify ai generated text and deepfake images.
+DetectAI is a modular tool that uses state of the art techniques to identify ai generated text and deepfake images.
 ## HOW TO Install ? 👷
 
 # BACKEND
