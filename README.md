@@ -4,7 +4,8 @@ DetectAI is a modular tool that uses state of the art techniques to identify ai 
 
 # BACKEND
 Download and install Python 3.10 from: https://www.python.org/ftp/python/3.10.0/python-3.10.0-amd64.exe
-It is recommended to run it in a virtual environment so following steps also assume the same
+
+It is recommended to run it in a virtual environment, Following steps also assume the same.
 ```terminal
 git clone https://github.com/dahalsharad/DetectAI.git
 cd DetectAI
