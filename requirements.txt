@@ -12,7 +12,7 @@ ci-info==0.3.0
 click==8.1.7
 configobj==5.0.8
 configparser==6.0.0
-Django==4.2.7
+Django==4.2.16
 docx2txt==0.8
 etelemetry==0.3.1
 exceptiongroup==1.2.0
